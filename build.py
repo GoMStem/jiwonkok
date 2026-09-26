@@ -298,6 +298,8 @@ def build():
     web_head = (ROOT / "src" / "web-head.html").read_text(encoding="utf-8")
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
+    for f in (ROOT / "static").iterdir():  # 공유 미리보기 이미지 등
+        shutil.copy(f, dist / f.name)
     (dist / "index.html").write_text(
         f'<!doctype html>\n<html lang="ko">\n<head>\n{web_head}{out[:cut]}</head>\n<body>\n{out[cut:]}</body>\n</html>\n',
         encoding="utf-8")

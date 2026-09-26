@@ -18,6 +18,9 @@ main 에 push 해도 한 번 돈다. 수동 실행: GitHub → Actions → daily
 
 - `src/page.html` — 페이지 원본. 수정은 여기서 한다. `/*__DATA__*/null` 자리에 공고 데이터가 들어간다
 - `build.py` — 공고 정리 + `page.html` 생성
+- `src/og.html` → `static/og.png` — 카카오톡 공유 미리보기 이미지(1200×630). `og.html`을 고친 뒤 아래 명령으로 다시 찍는다
+  `chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=8000 --screenshot=static/og.png src/og.html`
+  카카오톡은 미리보기를 캐시하므로, 바꾼 뒤에는 카카오 개발자 사이트의 공유 디버거에서 캐시를 지운다
 - `src/web-head.html` — 웹 배포용 `<head>` 추가분 (charset, viewport, 공유 미리보기)
 - `page.html` — Artifact 미리보기용 결과물 / `dist/index.html` — 웹 배포용 결과물. 둘 다 직접 고치지 않는다
 - `data/raw/*.jsonl` — 크롤러가 받은 원본 / `data/programs.json` — 정리된 공고
@@ -45,4 +48,3 @@ python build.py --crawl
 
 ## 다음 할 일
 
-- (선택) 공유 미리보기 이미지(og:image) 만들기

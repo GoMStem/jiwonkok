@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 카카오톡·SNS 공유 미리보기 이미지 원본 (1200×630). 만드는 법은 README 참고 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@500;700&family=IBM+Plex+Mono:wght@600&display=block">
+<style>
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{background:#F3F6F2;color:#16212B;font-family:"IBM Plex Sans KR","Malgun Gothic",sans-serif;position:relative;word-break:keep-all}
+  .left{position:absolute;left:72px;top:64px;width:600px}
+  .logo{font-family:"Black Han Sans","Malgun Gothic",sans-serif;font-size:40px;display:flex;align-items:center;gap:12px}
+  .logo i{width:36px;height:36px;border:4px solid #D1342A;border-radius:50%;position:relative;display:inline-block}
+  .logo i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:#D1342A}
+  h1{margin-top:40px;font-family:"Black Han Sans","Malgun Gothic",sans-serif;font-weight:400;font-size:66px;line-height:1.14;letter-spacing:-.01em}
+  h1 em{font-style:normal;color:#D1342A}
+  .sub{margin-top:26px;font-size:25px;font-weight:500;color:#4A5864}
+  .addr{position:absolute;right:64px;bottom:52px;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:22px;color:#4A5864}
+  .sheet{position:absolute;right:64px;top:92px;width:430px;background:#fff;border:1.5px solid #CCD6CF;border-top:5px solid #16212B;border-radius:4px 4px 8px 8px;padding:22px 24px 8px;box-shadow:0 30px 60px -30px rgba(22,33,43,.4)}
+  .row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:16px 0;border-bottom:1.5px dashed #CCD6CF}
+  .row:last-child{border-bottom:0}
+  .tag{display:inline-block;font-size:15px;font-weight:700;padding:2px 9px;border-radius:5px;margin-bottom:6px}
+  .ok{background:#E1F2E8;color:#1F7A4D}.cash{background:#FBF0D9;color:#9A6200}.loan{box-shadow:inset 0 0 0 1.5px #16212B}
+  .t{font-size:21px;font-weight:700;line-height:1.35}
+  .d{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:22px;text-align:right}
+  .d.hot{color:#D1342A}
+  .stamp{position:absolute;right:440px;top:392px;width:150px;height:150px;border:5px solid #D1342A;border-radius:50%;color:#D1342A;display:grid;place-items:center;text-align:center;font-family:"Black Han Sans","Malgun Gothic",sans-serif;font-size:27px;line-height:1.15;transform:rotate(-12deg);background:rgba(243,246,242,.75)}
+  .stamp::before{content:"";position:absolute;inset:8px;border:2px solid #D1342A;border-radius:50%}
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="logo"><i></i>지원콕</div>
+    <h1>우리 가게가<br>받을 수 있는<br><em>지원사업</em>만 쏙</h1>
+    <p class="sub">동네·업종만 고르면 지금 접수 중인<br>정부·지자체 공고를 마감 순서대로</p>
+  </div>
+  <p class="addr">tools.gomstem.io/jiwonkok</p>
+  <div class="sheet">
+    <div class="row"><div><span class="tag ok">시설·기기</span><p class="t">스마트기기 도입 지원</p></div><span class="d hot">D-4</span></div>
+    <div class="row"><div><span class="tag cash">지원금</span><p class="t">소상공인 경영안정지원금</p></div><span class="d">D-11</span></div>
+    <div class="row"><div><span class="tag loan">대출·보증</span><p class="t">경영안정자금 특례보증</p></div><span class="d">상시</span></div>
+  </div>
+  <div class="stamp">신청<br>가능</div>
+</body>
+</html>
