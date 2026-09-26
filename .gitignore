@@ -1,0 +1,5 @@
+/vendor/
+/data/
+/dist/
+/page.html
+__pycache__/

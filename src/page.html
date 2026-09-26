@@ -1,0 +1,482 @@
+<title>지원콕</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F6F2;
+  --sheet:#FFFFFF;
+  --ink:#16212B;
+  --ink-2:#4A5864;
+  --line:#CCD6CF;
+  --line-soft:#E1E8E3;
+  --stamp:#D1342A;
+  --stamp-soft:#FBE7E4;
+  --ok:#1F7A4D;
+  --ok-soft:#E1F2E8;
+  --warn:#9A6200;
+  --warn-soft:#FBF0D9;
+  --muted-soft:#ECEFF2;
+  --cta:#16212B;
+  --cta-ink:#FFFFFF;
+  --display:"Black Han Sans","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Consolas",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#10171D; --sheet:#18222A; --ink:#E8EEF0; --ink-2:#A3B1BB;
+    --line:#2E3C46; --line-soft:#24303A;
+    --stamp:#FF6B5E; --stamp-soft:#3A1E1C;
+    --ok:#5FD39A; --ok-soft:#173226; --warn:#F2B64B; --warn-soft:#3A2C12; --muted-soft:#232E37;
+    --cta:#E8EEF0; --cta-ink:#10171D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#10171D; --sheet:#18222A; --ink:#E8EEF0; --ink-2:#A3B1BB;
+  --line:#2E3C46; --line-soft:#24303A;
+  --stamp:#FF6B5E; --stamp-soft:#3A1E1C;
+  --ok:#5FD39A; --ok-soft:#173226; --warn:#F2B64B; --warn-soft:#3A2C12; --muted-soft:#232E37;
+  --cta:#E8EEF0; --cta-ink:#10171D;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--stamp);outline-offset:3px}
+button{font:inherit;color:inherit}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.01em;display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo i{display:inline-block;width:22px;height:22px;border:2.5px solid var(--stamp);border-radius:50%;position:relative}
+.logo i::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--stamp)}
+.btn-s{font-size:14px;font-weight:700;text-decoration:none;border:1.5px solid var(--ink);padding:7px 14px;border-radius:999px}
+
+/* hero + search */
+.hero{padding-block:28px 32px}
+.eyebrow{font-size:14px;font-weight:700;color:var(--stamp);letter-spacing:.04em;margin-bottom:12px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5.4vw,56px);line-height:1.14;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--stamp)}
+.lede{margin-top:16px;font-size:17px;color:var(--ink-2);max-width:40em}
+
+.search{margin-top:28px;background:var(--sheet);border:1px solid var(--line);border-top:3px solid var(--ink);border-radius:4px 4px 6px 6px;padding:22px;display:grid;gap:18px;box-shadow:0 24px 48px -32px rgba(22,33,43,.35)}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1.2fr 1.4fr;gap:14px}
+.wide{grid-column:span 3}
+.field{display:grid;gap:6px;align-content:start;min-width:0}
+.field label,.legend{font-size:13px;font-weight:700;color:var(--ink-2);letter-spacing:.02em}
+input[type=text],input[type=tel],input[type=search],select{font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;width:100%;min-width:0}
+input:focus,select:focus{outline:2px solid var(--ink);outline-offset:0;border-color:var(--ink)}
+select:disabled{opacity:.55}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips label{font-weight:500;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;background:var(--paper);user-select:none}
+.chips input:checked+label{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chips input:focus-visible+label{outline:2px solid var(--stamp);outline-offset:2px}
+.opts{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:14px}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink-2);cursor:pointer}
+.check input{width:17px;height:17px;margin:0}
+.reset{background:none;border:0;padding:4px 0;font-size:14px;color:var(--ink-2);text-decoration:underline;cursor:pointer}
+
+/* results */
+.results{padding-block:8px 64px}
+.rhead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.rcount{font-size:15px;color:var(--ink-2)}
+.rcount b{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;margin-right:2px}
+.sort{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--sheet)}
+.sort button{border:0;background:none;padding:8px 14px;font-size:14px;cursor:pointer;color:var(--ink-2)}
+.sort button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:700}
+.coverage{font-size:13px;color:var(--ink-2);padding-block:10px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.coverage span{font-variant-numeric:tabular-nums}
+
+.list{list-style:none;margin:0;padding:0;background:var(--sheet);border:1px solid var(--line);border-radius:6px}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding:18px 20px;border-bottom:1px solid var(--line-soft)}
+.item:last-child{border-bottom:0}
+.item .tags{display:flex;flex-wrap:wrap;gap:6px;grid-column:1/2}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;line-height:1.6}
+.k{background:var(--muted-soft);color:var(--ink-2)}
+.k-loan{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.k-cash{background:var(--ok-soft);color:var(--ok)}
+.item h3{grid-column:1/2;font-size:17px;line-height:1.45;font-weight:700}
+.item{position:relative;cursor:pointer}
+.item:hover{background:var(--paper)}
+.item h3 a{text-decoration:none}
+.item h3 a::after{content:"";position:absolute;inset:0}
+.item h3 a:focus-visible{outline:none}
+.item:has(a:focus-visible){outline:2px solid var(--stamp);outline-offset:-2px}
+.go{grid-column:1/2;font-size:13px;font-weight:700;color:var(--ink)}
+.go::after{content:" ↗"}
+.item h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.item .meta{grid-column:1/2;font-size:14px;color:var(--ink-2)}
+.item .why{grid-column:1/2;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px}
+.why .good{color:var(--ok)}
+.why .good::before{content:"✓ "}
+.why .care{color:var(--warn)}
+.why .care::before{content:"! "}
+.dday{grid-column:2/3;grid-row:1/span 5;text-align:right;align-self:start;min-width:84px}
+.dday b{display:block;font-family:var(--mono);font-weight:600;font-size:20px;line-height:1.2;font-variant-numeric:tabular-nums}
+.dday small{display:block;font-size:12px;color:var(--ink-2);margin-top:2px}
+.dday.hot b{color:var(--stamp)}
+.dday.roll b{font-family:var(--body);font-size:15px;font-weight:700;color:var(--ink-2)}
+.more{display:flex;justify-content:center;padding-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--cta);color:var(--cta-ink);font:700 16px/1 var(--body);padding:15px 24px;border-radius:10px;border:0;cursor:pointer;text-decoration:none}
+.btn.ghost{background:var(--sheet);color:var(--ink);border:1.5px solid var(--ink)}
+.empty{padding:40px 20px;text-align:center;color:var(--ink-2)}
+.disclaim{margin-top:14px;font-size:13px;color:var(--ink-2)}
+
+/* sections */
+section.block{padding-block:64px;border-top:1px solid var(--line)}
+.kicker{font-size:14px;font-weight:700;color:var(--ink-2);letter-spacing:.04em;margin-bottom:12px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,38px);line-height:1.22}
+.sub{margin-top:14px;color:var(--ink-2);max-width:40em;font-size:16px}
+
+.promises{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.promise h3{font-size:18px;line-height:1.4}
+.promise h3::before{content:"";display:block;width:28px;height:3px;background:var(--stamp);margin-bottom:14px}
+.promise p{margin-top:8px;color:var(--ink-2);font-size:15px}
+
+
+.faq{margin-top:28px;max-width:760px}
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--ink-2)}
+details[open] summary::after{content:"−"}
+details p{margin-top:10px;color:var(--ink-2);font-size:15px}
+
+footer{border-top:1px solid var(--line);padding-block:32px 48px;font-size:13px;color:var(--ink-2);display:grid;gap:6px}
+
+@media (max-width:900px){
+  .grid4{grid-template-columns:1fr 1fr}
+  .wide{grid-column:1/-1}
+  .promises{grid-template-columns:1fr;gap:24px}
+  section.block{padding-block:52px}
+}
+@media (max-width:560px){
+  .search{padding:16px}
+  .grid4{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr;padding:16px}
+  .dday{grid-column:1/2;grid-row:auto;text-align:left;display:flex;align-items:baseline;gap:8px;order:-1}
+  .dday b{font-size:16px}
+  .dday small{margin:0}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>지원콕</a>
+    <a class="btn-s" href="#results">결과 보기</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">가게 운영 중인 사장님을 위한 지원사업 검색</p>
+      <h1>지금 접수 중인 지원사업,<br><em>우리 가게 것만</em> 골라보세요</h1>
+      <p class="lede">가게 정보를 골라주세요. 소상공인24·기업마당에서 지금 접수 중인 공고 중 맞는 것만 추려 드려요. 공고를 누르면 신청하는 사이트로 바로 이동합니다.</p>
+
+      <form class="search" id="search" role="search" onsubmit="return false">
+        <div class="grid4">
+          <div class="field">
+            <label for="q-prov">시·도</label>
+            <select id="q-prov"><option value="">전체 지역</option></select>
+          </div>
+          <div class="field">
+            <label for="q-dist">시·군·구</label>
+            <select id="q-dist" disabled><option value="">전체</option></select>
+          </div>
+          <div class="field">
+            <label for="q-ind">업종</label>
+            <select id="q-ind">
+              <option value="">선택 안 함</option>
+              <option value="food">음식점·카페</option>
+              <option value="retail">소매·도소매</option>
+              <option value="beauty">미용·뷰티</option>
+              <option value="maker">제조·공방</option>
+              <option value="online">온라인 판매</option>
+              <option value="stay">숙박·관광</option>
+              <option value="academy">학원·교습소</option>
+              <option value="farm">농·축·수산</option>
+              <option value="etc">그 외 서비스업</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-text">검색어</label>
+            <input id="q-text" type="search" placeholder="예) 키오스크, 임대료, 배달" autocomplete="off">
+          </div>
+        </div>
+        <div class="grid4">
+          <div class="field">
+            <label for="q-age">사업 기간</label>
+            <select id="q-age">
+              <option value="">선택 안 함</option>
+              <option value="0">1년 미만</option>
+              <option value="1">1~3년</option>
+              <option value="3">3~7년</option>
+              <option value="7">7년 이상</option>
+            </select>
+          </div>
+          <div class="field wide">
+            <span class="legend" id="who-legend">해당하는 것 (있으면 모두)</span>
+            <div class="chips" id="q-who" role="group" aria-labelledby="who-legend">
+              <input type="checkbox" id="w-young" value="청년"><label for="w-young">대표 만 39세 이하</label>
+              <input type="checkbox" id="w-woman" value="여성"><label for="w-woman">여성 대표</label>
+              <input type="checkbox" id="w-dis" value="장애인"><label for="w-dis">장애인 대표</label>
+              <input type="checkbox" id="w-market" value="전통시장"><label for="w-market">전통시장·상점가 안 가게</label>
+              <input type="checkbox" id="w-close" value="폐업·재기"><label for="w-close">폐업·업종 전환 고민 중</label>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <span class="legend" id="kind-legend">필요한 지원 (고르지 않으면 전부)</span>
+          <div class="chips" id="q-kinds" role="group" aria-labelledby="kind-legend"></div>
+        </div>
+        <div class="opts">
+          <label class="check" for="q-sme"><input type="checkbox" id="q-sme">중소기업·기술기업 대상 공고도 보기</label>
+          <button type="button" class="reset" id="q-reset">조건 지우기</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" id="results" aria-live="polite">
+      <div class="rhead">
+        <p class="rcount" id="r-count"></p>
+        <div class="sort" role="group" aria-label="정렬">
+          <button type="button" data-sort="fit" aria-pressed="true">맞춤순</button>
+          <button type="button" data-sort="due" aria-pressed="false">마감 임박순</button>
+        </div>
+      </div>
+      <p class="coverage" id="r-cov"></p>
+      <ul class="list" id="r-list"></ul>
+      <div class="more"><button type="button" class="btn ghost" id="r-more" hidden>더 보기</button></div>
+      <p class="disclaim">공고를 누르면 해당 사이트로 이동해요. 공고 제목과 기관 정보로 1차 분류한 결과라서, 매출·직원 수 같은 세부 자격은 공고 원문에서 꼭 확인하세요.</p>
+    </section>
+
+
+    <section class="block">
+      <p class="kicker">지원콕이 지키는 것</p>
+      <h2>사장님 대신 공고를 모으는 만큼, 정직하게</h2>
+      <div class="promises">
+        <div class="promise"><h3>갚아야 하는 돈은 따로 표시</h3><p>정책자금 대출과 보증은 받는 돈이 아닙니다. 지원금과 섞이지 않게 '대출·보증' 표시를 붙입니다.</p></div>
+        <div class="promise"><h3>몇 건을 봤는지 공개</h3><p>어느 사이트에서 몇 건을 모아 몇 건이 접수 중인지 결과 위에 늘 적어 둡니다. 조용히 빠뜨리지 않습니다.</p></div>
+        <div class="promise"><h3>모르는 건 모른다고</h3><p>제목만으로 판단하기 어려운 조건은 '확인 필요'로 남깁니다. 원문 링크를 달아 바로 확인하실 수 있게 합니다.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="kicker">자주 묻는 질문</p>
+      <h2>궁금한 점</h2>
+      <div class="faq">
+        <details><summary>어떤 공고가 나오나요?</summary><p>소상공인24(소상공인시장진흥공단·지자체·대출상품)와 기업마당에서 지금 접수 중인 공고입니다. 두 곳에 같이 올라온 공고는 하나로 합쳤고, 마감된 공고와 운영기관·심사위원 모집, 학자금·주택 같은 개인 대출은 뺐습니다.</p></details>
+        <details><summary>'맞춤순'은 어떻게 정해지나요?</summary><p>우리 동네 공고, 소상공인 대상 공고, 고른 업종이 제목에 나오는 공고를 위로 올리고, 같은 점수끼리는 마감이 가까운 순서로 둡니다. 다른 시·군·구만 대상인 공고는 빼고, 예비창업자 대상처럼 운영 중인 가게와 맞지 않을 수 있는 공고에는 주의 표시를 붙입니다.</p></details>
+        <details><summary>검색 결과에 나오면 신청할 수 있는 건가요?</summary><p>아니요. 지금은 제목과 기관으로 1차로 걸러 드리는 단계입니다. 업력·매출·직원 수 같은 조건은 공고 원문과 첨부파일에 있으니 꼭 확인하세요. 공고를 누르면 원문으로 이동합니다.</p></details>
+        <details><summary>입력한 정보는 어디에 저장되나요?</summary><p>어디에도 저장하지 않습니다. 고른 조건은 이 화면에서 결과를 거르는 데만 쓰이고, 창을 닫으면 사라집니다.</p></details>
+        <details><summary>공고는 얼마나 자주 새로 바뀌나요?</summary><p>결과 위에 적힌 시각에 모은 공고입니다.</p></details>
+        <details><summary>예비창업자도 쓸 수 있나요?</summary><p>지원콕은 이미 가게를 운영 중인 사장님을 위한 서비스입니다. 창업 준비 단계라면 K-Startup 같은 창업 지원사업 쪽이 더 잘 맞습니다.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>지원콕</b> · 소상공인 지원사업 검색 (정식 오픈 준비 중)</p>
+    <p>지원콕은 정부기관이 아니며, 공고의 최종 내용은 각 기관 원문을 따릅니다. 공고 출처: 소상공인24, 기업마당</p>
+  </footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+
+(function(){
+  const KINDS = [["cash","지원금"],["loan","대출·보증"],["facility","시설·기기"],["sales","판로·온라인"],["hire","인력·고용"],["edu","교육·컨설팅"],["cert","인증·특허"],["etc","기타"]];
+  const KIND_LABEL = Object.fromEntries(KINDS);
+  const IND_LABEL = {food:"음식점·카페",retail:"소매",beauty:"미용·뷰티",maker:"제조·공방",online:"온라인 판매",stay:"숙박·관광",academy:"학원",farm:"농·축·수산",etc:"서비스업"};
+  const PROVS = ["서울","부산","대구","인천","광주","대전","울산","세종","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
+  const PAGE = 30;
+  const $ = id => document.getElementById(id);
+  const items = DATA.items;
+  const meta = DATA.meta;
+
+  // 오늘 (브라우저 기준, 한국 날짜)
+  const todayStr = new Date(Date.now() + 9*3600e3).toISOString().slice(0,10);
+  const dayMs = 86400e3;
+  const daysLeft = e => Math.round((Date.parse(e) - Date.parse(todayStr)) / dayMs);
+
+  // ── 검색 폼 채우기
+  const prov = $("q-prov"), dist = $("q-dist");
+  PROVS.forEach(p => prov.add(new Option(p, p)));
+  const kindBox = $("q-kinds");
+  KINDS.forEach(([k, label]) => {
+    const i = document.createElement("input"); i.type = "checkbox"; i.id = "k-" + k; i.value = k;
+    const l = document.createElement("label"); l.htmlFor = i.id; l.textContent = label;
+    kindBox.append(i, l);
+  });
+  function fillDistricts(){
+    const p = prov.value;
+    dist.length = 1;
+    (DATA.districts[p] || []).forEach(d => dist.add(new Option(d, d)));
+    dist.disabled = !p || !(DATA.districts[p] || []).length;
+  }
+
+  let sortBy = "fit", shown = PAGE;
+
+  function state(){
+    return {
+      prov: prov.value, dist: dist.value, ind: $("q-ind").value,
+      text: $("q-text").value.trim(),
+      kinds: [...kindBox.querySelectorAll("input:checked")].map(i => i.value),
+      sme: $("q-sme").checked,
+      age: $("q-age").value === "" ? null : Number($("q-age").value),
+      who: [...document.querySelectorAll("#q-who input:checked")].map(i => i.value),
+    };
+  }
+
+  // ── 한 공고를 조건에 맞춰 점수 매기기. null 이면 뺀다.
+  function judge(it, s, words){
+    if (it.e && it.e < todayStr) return null;
+    const good = [], care = [];
+    let score = 0;
+
+    if (!s.sme && it.au === "sme") return null;
+    if (it.au === "soho") { score += 2; good.push("소상공인 대상"); }
+    else if (it.au === "sme") care.push("중소기업·기술기업 대상일 수 있음");
+
+    if (s.prov) {
+      if (it.p.length && !it.p.includes(s.prov)) return null;
+      if (it.p.includes(s.prov)) {
+        if (s.dist && it.d.length) {
+          if (!it.d.includes(s.dist)) return null;
+          score += 4; good.push(s.dist + " 공고");
+        } else if (it.d.length) {
+          care.push(it.d.join("·") + " 대상");
+        } else { score += 3; good.push(s.prov + " 공고"); }
+      } else { score += 1; }
+    }
+
+    if (s.kinds.length && !it.k.some(k => s.kinds.includes(k))) return null;
+
+    if (s.ind && s.ind !== "etc") {
+      if (it.in.includes(s.ind)) { score += 3; good.push(IND_LABEL[s.ind] + " 언급"); }
+      else if (it.in.length) { score -= 2; care.push(it.in.map(i => IND_LABEL[i]).join("·") + " 업종 대상일 수 있음"); }
+    } else if (s.ind === "etc" && it.in.length) {
+      score -= 1; care.push(it.in.map(i => IND_LABEL[i]).join("·") + " 업종 대상일 수 있음");
+    }
+
+    // 대상이 정해진 공고: 해당하지 않으면 빼고, 해당하면 위로
+    if (it.tg.includes("예비창업")) return null;
+    for (const t of ["청년","여성","장애인","폐업·재기"]) {
+      if (!it.tg.includes(t)) continue;
+      if (!s.who.includes(t)) return null;
+      score += 3; good.push(t + " 대상");
+    }
+    if (it.tg.includes("전통시장")) {
+      if (s.who.includes("전통시장")) { score += 3; good.push("전통시장·상점가 대상"); }
+      else care.push("전통시장·상점가 가게 대상일 수 있음");
+    }
+    if (it.tg.includes("농·어업") && s.ind !== "farm") return null;
+    if (it.tg.includes("초기창업") && s.age !== null) {
+      if (s.age >= 3) care.push("초기 창업 가게 대상일 수 있음");
+      else { score += 2; good.push("초기 창업 가게 대상"); }
+    }
+    if (it.sched) care.push("회차 예정");
+
+    if (words.length) {
+      const hay = (it.t + " " + it.a).toLowerCase();
+      if (!words.every(w => hay.includes(w))) return null;
+    }
+    return { it, score, good, care };
+  }
+
+  function dueKey(it){ return it.e ? daysLeft(it.e) : 9999; }
+
+  function render(resetPage){
+    if (resetPage) shown = PAGE;
+    const s = state();
+    const words = s.text.toLowerCase().split(/\s+/).filter(Boolean);
+    const hits = [];
+    for (const it of items) { const r = judge(it, s, words); if (r) hits.push(r); }
+    hits.sort(sortBy === "fit"
+      ? (a, b) => b.score - a.score || dueKey(a.it) - dueKey(b.it)
+      : (a, b) => dueKey(a.it) - dueKey(b.it) || b.score - a.score);
+
+    const open = items.filter(it => !it.e || it.e >= todayStr).length;
+    $("r-count").innerHTML = "";
+    const b = document.createElement("b"); b.textContent = hits.length.toLocaleString("ko-KR");
+    $("r-count").append(b, `건 · 접수 중 ${open.toLocaleString("ko-KR")}건 중`);
+
+    const list = $("r-list"); list.innerHTML = "";
+    if (!hits.length) {
+      const li = document.createElement("li"); li.className = "empty";
+      li.textContent = "조건에 맞는 공고가 없어요. 검색어를 지우거나 '필요한 지원'을 줄여 보세요.";
+      list.append(li);
+    }
+    hits.slice(0, shown).forEach(h => list.append(row(h)));
+    $("r-more").hidden = hits.length <= shown;
+    $("r-more").textContent = `더 보기 (${(hits.length - shown).toLocaleString("ko-KR")}건 남음)`;
+  }
+
+  function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function row(h){
+    const it = h.it;
+    const li = el("li", "item");
+    const tags = el("div", "tags");
+    it.k.filter(k => k !== "etc").forEach(k => tags.append(el("span", "tag k k-" + k, k === "loan" ? "대출·보증 · 갚는 돈" : KIND_LABEL[k])));
+    tags.append(el("span", "tag k", it.p.length ? it.p.join("·") + (it.d.length ? " " + it.d.join("·") : "") : "전국"));
+    const h3 = el("h3"); const a = el("a", null, it.t); a.href = it.u; a.target = "_blank"; a.rel = "noopener"; h3.append(a);
+    const m = el("p", "meta", `${it.a} · ${it.s}`);
+    const why = el("p", "why");
+    h.good.forEach(g => why.append(el("span", "good", g)));
+    h.care.forEach(c => why.append(el("span", "care", c)));
+    const dd = el("div", "dday");
+    if (it.e) {
+      const n = daysLeft(it.e);
+      if (n <= 7) dd.classList.add("hot");
+      dd.append(el("b", null, n === 0 ? "오늘 마감" : "D-" + n), el("small", null, it.e.slice(5).replace("-", ".") + " 마감"));
+    } else {
+      dd.classList.add("roll");
+      dd.append(el("b", null, it.rn && /소진/.test(it.rn) ? "예산 소진 시" : "상시"), el("small", null, it.rn ? "마감일 없음" : "상시 운영"));
+    }
+    li.append(tags, h3, m);
+    if (h.good.length || h.care.length) li.append(why);
+    li.append(el("p", "go", it.s + "에서 공고 보기"), dd);
+    return li;
+  }
+
+  function setSort(v){
+    sortBy = v;
+    document.querySelectorAll(".sort button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.sort === v)));
+  }
+
+  // ── 커버리지 (몇 건을 봤는지)
+  const n = x => Number(x).toLocaleString("ko-KR");
+  const cov = $("r-cov");
+  [`${meta.crawled_at} 기준`, `소상공인24 ${n(meta.sbiz_collected)}건 · 기업마당 ${n(meta.bizinfo_collected)}건 확인`,
+   `중복 ${n(meta.dup)} · 마감 ${n(meta.closed)} · 운영기관 모집 ${n(meta.operator)} · 개인 대출 ${n(meta.personal)}건 제외`]
+    .forEach(t => cov.append(el("span", null, t)));
+
+  // ── 이벤트
+  prov.addEventListener("change", () => { fillDistricts(); render(true); });
+  dist.addEventListener("change", () => render(true));
+  $("q-ind").addEventListener("change", () => render(true));
+  $("q-sme").addEventListener("change", () => render(true));
+  kindBox.addEventListener("change", () => render(true));
+  $("q-age").addEventListener("change", () => render(true));
+  $("q-who").addEventListener("change", () => render(true));
+  let t; $("q-text").addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => render(true), 150); });
+  document.querySelectorAll(".sort button").forEach(b => b.addEventListener("click", () => { setSort(b.dataset.sort); render(true); }));
+  $("r-more").addEventListener("click", () => { shown += PAGE; render(false); });
+  $("q-reset").addEventListener("click", () => {
+    prov.value = ""; fillDistricts(); $("q-ind").value = ""; $("q-text").value = "";
+    document.querySelectorAll("#q-kinds input, #q-who input").forEach(i => i.checked = false); $("q-sme").checked = false; $("q-age").value = "";
+    render(true);
+  });
+
+  render(true);
+})();
+</script>
