@@ -22,7 +22,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 50 # 수집 3회 + 재시도 대기 15분
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

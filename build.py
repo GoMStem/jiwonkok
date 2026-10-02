@@ -14,6 +14,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 import shutil
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -23,6 +24,9 @@ RAW = ROOT / "data" / "raw"
 KST = timezone(timedelta(hours=9))
 # 이보다 적게 모이면 수집이 잘못된 것으로 보고 페이지를 새로 만들지 않는다 (2026-09 기준 약 1,800 / 1,500건)
 MIN_ROWS = {"sbiz.jsonl": 1000, "bizinfo.jsonl": 800}
+# 모자란 소스만 다시 받기 전에 기다리는 시간(초). 해외(GitHub) 서버에서는 기업마당 접속이
+# 몇 분씩 끊기는 일이 있어서 바로 재시도하면 같이 실패한다 (2026-10-02 실패 기록)
+RETRY_WAITS = [5 * 60, 10 * 60]
 SCRIPTS = ROOT / "vendor" / "sole-search" / "skills" / "sole-search" / "scripts"
 
 # ── 지역 ────────────────────────────────────────────────────────────
@@ -162,7 +166,8 @@ def load(name):
 
 
 def crawl():
-    """새로 받아 data/raw/new 에 두고, 건수가 충분할 때만 data/raw 로 옮긴다. 모자라면 한 번 더 받는다."""
+    """새로 받아 data/raw/new 에 두고, 건수가 충분할 때만 data/raw 로 옮긴다.
+    모자란 소스는 5분, 10분 기다렸다가 두 번까지 다시 받는다."""
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
     new = RAW / "new"
     jobs = {
@@ -170,7 +175,11 @@ def crawl():
         "bizinfo.jsonl": ["sources_crawl.py", "list", "-o"],
     }
     todo = list(jobs)
-    for attempt in (1, 2):
+    for attempt in range(1, len(RETRY_WAITS) + 2):
+        if attempt > 1:
+            wait = RETRY_WAITS[attempt - 2]
+            print(f"  {', '.join(todo)} 모자람 — {wait // 60}분 뒤 다시 받는다", flush=True)
+            time.sleep(wait)
         new.mkdir(parents=True, exist_ok=True)
         procs = {n: subprocess.Popen([sys.executable, str(SCRIPTS / jobs[n][0]), *jobs[n][1:], str(new / n)],
                                      env=env, stderr=subprocess.PIPE, text=True, encoding="utf-8") for n in todo}
